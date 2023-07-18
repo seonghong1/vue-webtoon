@@ -1,5 +1,11 @@
 # webtoon-service
 
+
+- page
+```
+  - 메인 페이지
+  - 검색 결과 페이지
+```
 ## Project setup
 ```
 npm install
