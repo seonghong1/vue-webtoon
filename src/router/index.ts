@@ -10,12 +10,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:title/:day",
     name: "detail",
-    component: () => import("../views/DetailView.vue"),
+    component: () => import("@/views/DetailView.vue"),
   },
   {
     path: "/search-result",
     name: "searchResult",
-    component: () => import("../views/SearchResultView.vue"),
+    component: () => import("@/views/SearchResultView.vue"),
   },
 ];
 

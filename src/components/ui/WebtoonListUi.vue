@@ -25,7 +25,6 @@ import router from "@/router";
 
 onMounted(() => {
   getToday();
-  console.log(today.value);
 });
 
 function moveDetail(title: string, i: number) {
@@ -34,6 +33,7 @@ function moveDetail(title: string, i: number) {
 
 const today = ref();
 function getToday() {
+  console.log(today.value);
   today.value = String(new Date().getDay());
 }
 const WebtoonData = useWebtoonDataStore();

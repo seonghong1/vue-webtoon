@@ -16,11 +16,12 @@
 import { dayKrArr } from "@/constants/dayArr";
 import { ref, onMounted } from "vue";
 
+const today = ref("");
+
 onMounted(() => {
   getToday();
 });
 
-const today = ref("");
 function getToday() {
   const date = new Date().getDay();
   today.value = dayKrArr[date];

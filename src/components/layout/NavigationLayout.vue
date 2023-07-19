@@ -1,6 +1,6 @@
 <template>
   <ul class="navigation-list">
-    <li class="" v-for="(day, i) in dayArr" :key="i">
+    <li class="navigation-item" v-for="(day, i) in dayArr" :key="i">
       {{ day }}
     </li>
   </ul>
@@ -9,18 +9,21 @@
 import { dayKrArr } from "@/constants/dayArr";
 import { ref } from "vue";
 
-// function getWebtoolUpdateDay(day: number) {}
-
 const dayArr = ref(dayKrArr);
+
+// function getWebtoolUpdateDay(day: number) {}
 </script>
 <style lang="scss">
-.navigation-list {
-  margin: 50px 0;
-  display: flex;
-  justify-content: center;
-  border-top: 1px solid $gray-color-2;
-  border-bottom: 1px solid $gray-color-2;
-  li {
+.navigation {
+  &-list {
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid $gray-color-2;
+    border-bottom: 1px solid $gray-color-2;
+  }
+
+  &-item {
     padding: 20px;
     font-size: 20px;
     cursor: pointer;

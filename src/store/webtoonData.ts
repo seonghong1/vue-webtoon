@@ -7,8 +7,8 @@ export const useWebtoonDataStore = defineStore("webtoonData", {
     };
   },
   actions: {
-    setWebtoonArr(webtoonData: Webtoon[]) {
-      this.webtoonArr.push(webtoonData);
+    setWebtoonArr(webtoonData: Webtoon[][]) {
+      this.webtoonArr.push(...webtoonData);
     },
   },
 });

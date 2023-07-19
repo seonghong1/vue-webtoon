@@ -1,25 +1,25 @@
-<template lang="">
-  <div>
-    <div class="gnb">
-      <div class="title">
-        <h1>NAVER</h1>
-        <h2>웹툰</h2>
-      </div>
-      <form class="search-form">
-        <input type="text" placeholder="제목/작가로 검색할 수 있습니다." />
-        <font-awesome-icon
-          class="search-icon"
-          :icon="['fas', 'magnifying-glass']"
-        />
-      </form>
-    </div>
-    <NavigationLayoutVue />
+<template>
+  <div class="gnb">
+    <header class="title">
+      <h1>NAVER</h1>
+      <h2>웹툰</h2>
+    </header>
+    <form class="search-form">
+      <input type="text" placeholder="제목/작가로 검색할 수 있습니다." />
+      <font-awesome-icon
+        class="search-icon"
+        :icon="['fas', 'magnifying-glass']"
+      />
+    </form>
   </div>
+  <NavigationLayout />
 </template>
+
 <script setup lang="ts">
-import NavigationLayoutVue from "@/components/layout/NavigationLayout.vue";
+import NavigationLayout from "@/components/layout/NavigationLayout.vue";
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
 .gnb {
   position: relative;
   display: flex;
@@ -38,9 +38,13 @@ import NavigationLayoutVue from "@/components/layout/NavigationLayout.vue";
       font-size: 30px;
     }
   }
-  .search-form {
+}
+
+.search {
+  &-form {
     position: absolute;
     right: 0;
+
     input {
       border: 1px solid $gray-color-2;
       color: $gray-color-1;
@@ -48,11 +52,12 @@ import NavigationLayoutVue from "@/components/layout/NavigationLayout.vue";
       font-size: 14px;
       width: 200px;
     }
-    .search-icon {
-      position: absolute;
-      right: 5;
-      top: 7;
-    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 5;
+    top: 7;
   }
 }
 </style>

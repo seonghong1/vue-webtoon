@@ -1,28 +1,40 @@
 <template>
   <LocalNavigationLaout />
-  <WebtoonListUi />
+  <WebtoonListUi v-if="!isLoading" />
+  <p v-else>Loading...</p>
 </template>
 
 <script setup lang="ts">
 import WebtoonListUi from "@/components/ui/WebtoonListUi.vue";
 import LocalNavigationLaout from "@/components/layout/LocalNavigationLaout.vue";
 import Axios from "@/axios/index";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { dayArr } from "@/constants/dayArr";
 import { useWebtoonDataStore } from "@/store/webtoonData";
 import type { Webtoon } from "@/type/webtoon.type";
 
+const isLoading = ref(false as boolean);
+
 const WebtoonData = useWebtoonDataStore();
 
-onMounted(async () => {
-  if (WebtoonData.webtoonArr.length < 1) {
-    let currentWebtoonArr: Webtoon[];
+const fetchWebtoon = async () => {
+  isLoading.value = true;
+  const currentWebtoonArr: Webtoon[][] = [];
 
+  if (WebtoonData.webtoonArr.length < 1) {
     for (let i = 0; dayArr.length > i; i++) {
-      currentWebtoonArr = await getWebtoon(dayArr[i]);
-      await WebtoonData.setWebtoonArr(currentWebtoonArr);
+      const _webtoon = await getWebtoon(dayArr[i]);
+      currentWebtoonArr.push(_webtoon);
     }
+    console.log(currentWebtoonArr);
+    WebtoonData.setWebtoonArr(currentWebtoonArr);
   }
+
+  isLoading.value = false;
+};
+
+onMounted(() => {
+  fetchWebtoon();
 });
 
 async function getWebtoon(day: string): Promise<Webtoon[]> {
@@ -34,8 +46,9 @@ async function getWebtoon(day: string): Promise<Webtoon[]> {
         updateDay: day,
       },
     });
+
     return response.data.webtoons;
-  } catch {
+  } catch (err) {
     return [];
   }
 }
